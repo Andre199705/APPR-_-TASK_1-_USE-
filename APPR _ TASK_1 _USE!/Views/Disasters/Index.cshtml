@@ -1,0 +1,57 @@
+﻿@model IEnumerable<APPR___TASK_1__USE_.Models.Disaster>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="color:white">Disaster</h1>
+<!--(Create Edit View in ASP.NET MVC, 2022)-->
+<!--(How to add CSS, 2022)-->
+
+<p>
+    <a style="color:white" asp-action="Create">Click to add a Disaster </a>
+</p>
+<table class="table" style="color:white">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Startdate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Enddate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Atype)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="color:white;">
+                    @Html.DisplayFor(modelItem => item.Startdate)
+                </td>
+                <td style="color:white;">
+                    @Html.DisplayFor(modelItem => item.Enddate)
+                </td>
+                <td style="color:white;">
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td style="color:white;">
+                    @Html.DisplayFor(modelItem => item.Atype)
+                </td>
+                <td>
+                    <a style="color:black" asp-action="Edit" asp-route-id="@item.TDisaster">Edit</a> |
+                    <a style="color:black" asp-action="Details" asp-route-id="@item.TDisaster">Details</a> |
+                    <a style="color:black" asp-action="Delete" asp-route-id="@item.TDisaster">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
