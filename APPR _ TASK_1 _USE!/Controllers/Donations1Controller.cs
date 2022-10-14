@@ -7,29 +7,26 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using APPR___TASK_1__USE_.Data;
 using APPR___TASK_1__USE_.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace APPR___TASK_1__USE_.Controllers
 {
-
-    //(Esposito and Esposito, 2022)
-    [Authorize]
-    public class DonationsController : Controller
+    public class Donations1Controller : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public DonationsController(ApplicationDbContext context)
+        public Donations1Controller(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Donations
+        // GET: Donations1
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Donations.ToListAsync());
+            var applicationDbContext = _context.Donations.Include(d => d.Categories);
+            return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Donations/Details/5
+        // GET: Donations1/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -38,6 +35,7 @@ namespace APPR___TASK_1__USE_.Controllers
             }
 
             var donations = await _context.Donations
+                .Include(d => d.Categories)
                 .FirstOrDefaultAsync(m => m.user == id);
             if (donations == null)
             {
@@ -47,18 +45,19 @@ namespace APPR___TASK_1__USE_.Controllers
             return View(donations);
         }
 
-        // GET: Donations/Create
+        // GET: Donations1/Create
         public IActionResult Create()
         {
+            ViewData["id"] = new SelectList(_context.Categories, "id", "id");
             return View();
         }
 
-        // POST: Donations/Create
+        // POST: Donations1/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("user,Date,Time,NewItem,Catagory,Description,Annonymys")] Donations donations)
+        public async Task<IActionResult> Create([Bind("user,Date,Time,NewItem,id,Description,Annonymys")] Donations donations)
         {
             if (ModelState.IsValid)
             {
@@ -66,10 +65,11 @@ namespace APPR___TASK_1__USE_.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["id"] = new SelectList(_context.Categories, "id", "id", donations.id);
             return View(donations);
         }
 
-        // GET: Donations/Edit/5
+        // GET: Donations1/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,15 +82,16 @@ namespace APPR___TASK_1__USE_.Controllers
             {
                 return NotFound();
             }
+            ViewData["id"] = new SelectList(_context.Categories, "id", "id", donations.id);
             return View(donations);
         }
 
-        // POST: Donations/Edit/5
+        // POST: Donations1/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("user,Date,Time,NewItem,Catagory,Description,Annonymys")] Donations donations)
+        public async Task<IActionResult> Edit(int id, [Bind("user,Date,Time,NewItem,id,Description,Annonymys")] Donations donations)
         {
             if (id != donations.user)
             {
@@ -117,10 +118,11 @@ namespace APPR___TASK_1__USE_.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["id"] = new SelectList(_context.Categories, "id", "id", donations.id);
             return View(donations);
         }
 
-        // GET: Donations/Delete/5
+        // GET: Donations1/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -129,6 +131,7 @@ namespace APPR___TASK_1__USE_.Controllers
             }
 
             var donations = await _context.Donations
+                .Include(d => d.Categories)
                 .FirstOrDefaultAsync(m => m.user == id);
             if (donations == null)
             {
@@ -138,7 +141,7 @@ namespace APPR___TASK_1__USE_.Controllers
             return View(donations);
         }
 
-        // POST: Donations/Delete/5
+        // POST: Donations1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -153,6 +156,5 @@ namespace APPR___TASK_1__USE_.Controllers
         {
             return _context.Donations.Any(e => e.user == id);
         }
-       
     }
 }
