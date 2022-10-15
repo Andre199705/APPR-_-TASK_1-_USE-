@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1 style="color:white;">Allocated Goods</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,10 +13,10 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
+            <th style="color:white;">
                 @Html.DisplayNameFor(model => model.Disaster)
             </th>
-            <th>
+            <th style="color:white;">
                 @Html.DisplayNameFor(model => model.Donations)
             </th>
             <th></th>
@@ -25,11 +25,11 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Disaster.TDisaster)
+                <td style="color:white;">
+                @Html.DisplayFor(modelItem => item.Disaster.Atype)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Donations.user)
+                <td style="color:white;">
+                @Html.DisplayFor(modelItem => item.Donations.Description)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |

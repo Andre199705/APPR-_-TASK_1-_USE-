@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1 style ="color:white;">Donations</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,22 +13,22 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
+            <th style="color:white;">
                 @Html.DisplayNameFor(model => model.Date)
             </th>
-            <th>
+            <th style="color:white;">
                 @Html.DisplayNameFor(model => model.Time)
             </th>
-            <th>
+            <th style="color:white;">
                 @Html.DisplayNameFor(model => model.NewItem)
             </th>
-            <th>
+            <th style="color:white;">
                 @Html.DisplayNameFor(model => model.Categories)
             </th>
-            <th>
+            <t style="color:white;">
                 @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
+            </t>
+            <th style="color:white;">
                 @Html.DisplayNameFor(model => model.Annonymys)
             </th>
             <th></th>
@@ -37,22 +37,22 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+                <td style="color:white;">
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
-            <td>
+                <td style="color:white;">
                 @Html.DisplayFor(modelItem => item.Time)
             </td>
-            <td>
+                <td style ="color:white;">
                 @Html.DisplayFor(modelItem => item.NewItem)
             </td>
-            <td>
+                <td style ="color:white;">
                 @Html.DisplayFor(modelItem => item.Categories.id)
             </td>
-            <td>
+                <td style ="color:white;">
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
-            <td>
+                <td ="color:white;">
                 @Html.DisplayFor(modelItem => item.Annonymys)
             </td>
             <td>
