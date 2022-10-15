@@ -49,8 +49,8 @@ namespace APPR___TASK_1__USE_.Controllers
         // GET: AlocatedGoods/Create
         public IActionResult Create()
         {
-            ViewData["DisasterId"] = new SelectList(_context.Disaster, "TDisaster", "TDisaster");
-            ViewData["user"] = new SelectList(_context.Donations, "user", "user");
+            ViewData["DisasterId"] = new SelectList(_context.Disaster, "TDisaster", "Atype");
+            ViewData["user"] = new SelectList(_context.Donations, "user", "Description");
             return View();
         }
 
@@ -67,8 +67,8 @@ namespace APPR___TASK_1__USE_.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DisasterId"] = new SelectList(_context.Disaster, "TDisaster", "TDisaster", alocatedGoods.DisasterId);
-            ViewData["user"] = new SelectList(_context.Donations, "user", "user", alocatedGoods.user);
+            ViewData["DisasterId"] = new SelectList(_context.Disaster, "TDisaster", "Atype", alocatedGoods.DisasterId);
+            ViewData["user"] = new SelectList(_context.Donations, "user", "Description", alocatedGoods.user);
             return View(alocatedGoods);
         }
 
@@ -85,8 +85,8 @@ namespace APPR___TASK_1__USE_.Controllers
             {
                 return NotFound();
             }
-            ViewData["DisasterId"] = new SelectList(_context.Disaster, "TDisaster", "TDisaster", alocatedGoods.DisasterId);
-            ViewData["user"] = new SelectList(_context.Donations, "user", "user", alocatedGoods.user);
+            ViewData["DisasterId"] = new SelectList(_context.Disaster, "TDisaster", "Atype", alocatedGoods.DisasterId);
+            ViewData["user"] = new SelectList(_context.Donations, "user", "Description", alocatedGoods.user);
             return View(alocatedGoods);
         }
 
@@ -122,8 +122,8 @@ namespace APPR___TASK_1__USE_.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DisasterId"] = new SelectList(_context.Disaster, "TDisaster", "TDisaster", alocatedGoods.DisasterId);
-            ViewData["user"] = new SelectList(_context.Donations, "user", "user", alocatedGoods.user);
+            ViewData["DisasterId"] = new SelectList(_context.Disaster, "TDisaster", "Atype", alocatedGoods.DisasterId);
+            ViewData["user"] = new SelectList(_context.Donations, "user", "Description", alocatedGoods.user);
             return View(alocatedGoods);
         }
 

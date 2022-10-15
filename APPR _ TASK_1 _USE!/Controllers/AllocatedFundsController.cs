@@ -49,8 +49,8 @@ namespace APPR___TASK_1__USE_.Controllers
         // GET: AllocatedFunds/Create
         public IActionResult Create()
         {
-            ViewData["user"] = new SelectList(_context.CashDonations, "user", "user");
-            ViewData["TDisaster"] = new SelectList(_context.Disaster, "TDisaster", "TDisaster");
+            ViewData["user"] = new SelectList(_context.CashDonations, "user", "Amount");
+            ViewData["TDisaster"] = new SelectList(_context.Disaster, "TDisaster", "Atype");
             return View();
         }
 
@@ -67,8 +67,8 @@ namespace APPR___TASK_1__USE_.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["user"] = new SelectList(_context.CashDonations, "user", "user", allocatedFunds.user);
-            ViewData["TDisaster"] = new SelectList(_context.Disaster, "TDisaster", "TDisaster", allocatedFunds.TDisaster);
+            ViewData["user"] = new SelectList(_context.CashDonations, "user", "Amount", allocatedFunds.user);
+            ViewData["TDisaster"] = new SelectList(_context.Disaster, "TDisaster", "Atype", allocatedFunds.TDisaster);
             return View(allocatedFunds);
         }
 
@@ -85,8 +85,8 @@ namespace APPR___TASK_1__USE_.Controllers
             {
                 return NotFound();
             }
-            ViewData["user"] = new SelectList(_context.CashDonations, "user", "user", allocatedFunds.user);
-            ViewData["TDisaster"] = new SelectList(_context.Disaster, "TDisaster", "TDisaster", allocatedFunds.TDisaster);
+            ViewData["user"] = new SelectList(_context.CashDonations, "user", "Amount", allocatedFunds.user);
+            ViewData["TDisaster"] = new SelectList(_context.Disaster, "TDisaster", "Atype", allocatedFunds.TDisaster);
             return View(allocatedFunds);
         }
 
@@ -122,8 +122,8 @@ namespace APPR___TASK_1__USE_.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["user"] = new SelectList(_context.CashDonations, "user", "user", allocatedFunds.user);
-            ViewData["TDisaster"] = new SelectList(_context.Disaster, "TDisaster", "TDisaster", allocatedFunds.TDisaster);
+            ViewData["user"] = new SelectList(_context.CashDonations, "user", "Amount", allocatedFunds.user);
+            ViewData["TDisaster"] = new SelectList(_context.Disaster, "TDisaster", "Atype", allocatedFunds.TDisaster);
             return View(allocatedFunds);
         }
 

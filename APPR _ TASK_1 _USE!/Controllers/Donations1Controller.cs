@@ -48,7 +48,7 @@ namespace APPR___TASK_1__USE_.Controllers
         // GET: Donations1/Create
         public IActionResult Create()
         {
-            ViewData["id"] = new SelectList(_context.Categories, "id", "id");
+            ViewData["id"] = new SelectList(_context.Categories, "id", "Category");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace APPR___TASK_1__USE_.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["id"] = new SelectList(_context.Categories, "id", "id", donations.id);
+            ViewData["id"] = new SelectList(_context.Categories, "id", "Category", donations.id);
             return View(donations);
         }
 
@@ -82,7 +82,7 @@ namespace APPR___TASK_1__USE_.Controllers
             {
                 return NotFound();
             }
-            ViewData["id"] = new SelectList(_context.Categories, "id", "id", donations.id);
+            ViewData["id"] = new SelectList(_context.Categories, "id", "Category", donations.id);
             return View(donations);
         }
 
@@ -118,7 +118,7 @@ namespace APPR___TASK_1__USE_.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["id"] = new SelectList(_context.Categories, "id", "id", donations.id);
+            ViewData["id"] = new SelectList(_context.Categories, "id", "Category", donations.id);
             return View(donations);
         }
 
