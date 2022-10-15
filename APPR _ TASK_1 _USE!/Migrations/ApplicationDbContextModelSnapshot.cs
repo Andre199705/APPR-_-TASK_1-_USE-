@@ -4,22 +4,67 @@ using APPR___TASK_1__USE_.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace APPR___TASK_1__USE_.Data.Migrations
+namespace APPR___TASK_1__USE_.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220912204149_ThirdMigration")]
-    partial class ThirdMigration
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("APPR___TASK_1__USE_.Models.AllocatedFunds", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Date")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TDisaster")
+                        .HasColumnType("int");
+
+                    b.Property<int>("user")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("TDisaster");
+
+                    b.HasIndex("user");
+
+                    b.ToTable("AllocatedFunds");
+                });
+
+            modelBuilder.Entity("APPR___TASK_1__USE_.Models.AlocatedGoods", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("DisasterId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("user")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("DisasterId");
+
+                    b.HasIndex("user");
+
+                    b.ToTable("AlocatedGoods");
+                });
 
             modelBuilder.Entity("APPR___TASK_1__USE_.Models.CashDonations", b =>
                 {
@@ -43,6 +88,21 @@ namespace APPR___TASK_1__USE_.Data.Migrations
                     b.HasKey("user");
 
                     b.ToTable("CashDonations");
+                });
+
+            modelBuilder.Entity("APPR___TASK_1__USE_.Models.Categories", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Category")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("APPR___TASK_1__USE_.Models.Disaster", b =>
@@ -79,9 +139,6 @@ namespace APPR___TASK_1__USE_.Data.Migrations
                     b.Property<bool>("Annonymys")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Catagory")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Date")
                         .HasColumnType("nvarchar(max)");
 
@@ -94,7 +151,12 @@ namespace APPR___TASK_1__USE_.Data.Migrations
                     b.Property<string>("Time")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("id")
+                        .HasColumnType("int");
+
                     b.HasKey("user");
+
+                    b.HasIndex("id");
 
                     b.ToTable("Donations");
                 });
@@ -297,6 +359,55 @@ namespace APPR___TASK_1__USE_.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("APPR___TASK_1__USE_.Models.AllocatedFunds", b =>
+                {
+                    b.HasOne("APPR___TASK_1__USE_.Models.Disaster", "Disaster")
+                        .WithMany()
+                        .HasForeignKey("TDisaster")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("APPR___TASK_1__USE_.Models.CashDonations", "CashDonations")
+                        .WithMany()
+                        .HasForeignKey("user")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CashDonations");
+
+                    b.Navigation("Disaster");
+                });
+
+            modelBuilder.Entity("APPR___TASK_1__USE_.Models.AlocatedGoods", b =>
+                {
+                    b.HasOne("APPR___TASK_1__USE_.Models.Disaster", "Disaster")
+                        .WithMany()
+                        .HasForeignKey("DisasterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("APPR___TASK_1__USE_.Models.Donations", "Donations")
+                        .WithMany()
+                        .HasForeignKey("user")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Disaster");
+
+                    b.Navigation("Donations");
+                });
+
+            modelBuilder.Entity("APPR___TASK_1__USE_.Models.Donations", b =>
+                {
+                    b.HasOne("APPR___TASK_1__USE_.Models.Categories", "Categories")
+                        .WithMany()
+                        .HasForeignKey("id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Categories");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

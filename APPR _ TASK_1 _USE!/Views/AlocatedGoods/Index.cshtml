@@ -1,0 +1,42 @@
+﻿@model IEnumerable<APPR___TASK_1__USE_.Models.AlocatedGoods>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="color:white;">Allocated Goods</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th style="color:white;">
+                @Html.DisplayNameFor(model => model.Disaster)
+            </th>
+            <th style="color:white;">
+                @Html.DisplayNameFor(model => model.Donations)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                <td style="color:white;">
+                @Html.DisplayFor(modelItem => item.Disaster.Atype)
+            </td>
+                <td style="color:white;">
+                @Html.DisplayFor(modelItem => item.Donations.Description)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

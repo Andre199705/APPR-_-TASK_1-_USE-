@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.CodeAnalysis;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,7 +21,10 @@ namespace APPR___TASK_1__USE_.Models
 
         public int NewItem { get; set; }
 
-        public string Catagory { get; set; }
+        [Required]
+        [ForeignKey("Categories")]
+        public int id { get; set; }
+        public virtual Categories Categories { get; set; }
 
         public string Description { get; set; }
          

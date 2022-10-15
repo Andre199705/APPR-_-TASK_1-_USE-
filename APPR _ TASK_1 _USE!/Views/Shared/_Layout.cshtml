@@ -25,7 +25,7 @@
 
         <nav  style="background: rgb(189,25,227); background: linear-gradient(118deg, rgba(189,25,227,1) 0%, rgba(235,117,11,1) 100%); color: white " class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light mb-3">
             <div class="container">
-                <a class="navbar-brand" style="color:white" asp-area="" asp-controller="Home" asp-action="Index">APPR___TASK_1__USE_</a>
+                <a class="navbar-brand" style="color:white" asp-area="" asp-controller="Home" asp-action="Index"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -35,16 +35,33 @@
                         <li class="nav-item">
                             <a class="nav-link" style="color:white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link " style="color:white" asp-area="" asp-controller="Donations" asp-action="Index">Donations</a>
+                            <a class="nav-link " style="color:white" asp-area="" asp-controller="Categories" asp-action="Index">Categories</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link " style="color:white" asp-area="" asp-controller="Donations1" asp-action="Index">Donations</a>
+                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" style="color:white" asp-area="" asp-controller="Disasters" asp-action="Index">Disaster</a>
                         </li>
 
+
                         <li class="nav-item">
-                            <a class="nav-link" style="color:white"asp-area="" asp-controller="CashDonations" asp-action="Index">CashDonation</a>
+                            <a class="nav-link" style="color:white" asp-area="" asp-controller="CashDonations" asp-action="Index">CashDonation</a>
                         </li>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link " style="color:white" asp-area="" asp-controller="AllocatedFunds" asp-action="Index">AllcatedFunds</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " style="color:white" asp-area="" asp-controller="AlocatedGoods" asp-action="Index">AllocatedGoods</a>
+                        </li>
+
+
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
